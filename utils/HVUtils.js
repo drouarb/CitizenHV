@@ -21,7 +21,6 @@ class HVManager {
             })
         })
             .then(() => {
-                Promise.promisifyAll(hv_tmp);
                 hv = hv_tmp;
                 return hv
             })
