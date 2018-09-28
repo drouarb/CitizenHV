@@ -22,6 +22,7 @@ vmapp.use('/', vmRoutes);
 app.use(IPFilter.filter(config.bridge_ip, vmapp));
 
 let proxyapp = express();
+proxyapp.use(cors());
 proxyapp.use('/', proxyRoutes);
 app.use(proxyapp);
 
