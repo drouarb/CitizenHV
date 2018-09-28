@@ -1,14 +1,28 @@
 /**
- * Created by drouar_b on 27/04/2017.
+ * Created with <3 by drouar_b
  */
 
-const express = require('express');
 const cors = require('cors');
-const routes = require('./routes/routes');
+const vhost = require('vhost');
+const express = require('express');
+const IPFilter = require('./utils/IPFilter');
+const hvRoutes = require('./routes/hvRoutes');
+const vmRoutes = require('./routes/vmRoutes');
+const proxyRoutes = require('./routes/proxyRoutes');
+const config = require('./config');
 
 let app = express();
 
-app.use(cors());
-app.use('/', routes);
+let hvapp = express();
+hvapp.use('/', hvRoutes);
+app.use(vhost(config.hv_domain, hvapp));
+
+let vmapp = express();
+vmapp.use('/', vmRoutes);
+app.use(IPFilter.filter(config.bridge_ip, vmapp));
+
+let proxyapp = express();
+proxyapp.use('/', proxyRoutes);
+app.use(proxyapp);
 
 module.exports = app;

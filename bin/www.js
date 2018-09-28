@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Created by drouar_b on 27/04/2017.
+ * Created with <3 by drouar_b
  */
 
 const app = require('../app');

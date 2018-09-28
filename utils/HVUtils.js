@@ -4,7 +4,7 @@ const config = require('../config');
 
 let hv = undefined;
 
-class HVManager {
+class HVUtils {
     static async getHV() {
         if (typeof hv !== "undefined") {
             return hv;
@@ -28,6 +28,32 @@ class HVManager {
                 console.log("Can't connect")
             });
     }
+
+    static async listAllDomains() {
+        let hv = await HVUtils.getHV();
+
+        return Promise.all([
+            hv.listDefinedDomainsAsync(),
+            hv.listActiveDomainsAsync()
+                .then((ids) => {
+                    return Promise.all(ids)
+                        .map((id) => {
+                            return hv.lookupDomainByIdAsync(id)
+                        })
+                        .map((domain) => {
+                            return domain.getNameAsync()
+                        })
+                })
+        ]).spread((defined, active) => {
+            return defined.concat(active)
+        });
+    }
+
+    static async getDomainFromName(name) {
+        let hv = await HVUtils.getHV();
+
+        return hv.lookupDomainByNameAsync(name)
+    }
 }
 
-module.exports = HVManager;
+module.exports = HVUtils;

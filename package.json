@@ -1,19 +1,21 @@
 {
-  "name": "citizen-hv",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "CitizenHV",
+  "version": "0.0.1",
   "dependencies": {
-    "bluebird": "^3.5.1",
-    "body-parser": "^1.18.2",
+    "bluebird": "^3.5.2",
     "cors": "^2.8.4",
-    "debug": "^3.1.0",
+    "debug": "^4.0.1",
     "express": "^4.16.3",
-    "libvirt": "^1.2.1"
+    "http-proxy": "^1.17.0",
+    "ip-range-check": "^0.0.2",
+    "libvirt": "^1.2.1",
+    "node-arp": "^1.0.6",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "random-mac": "^0.0.4",
+    "sequelize": "^4.39.0",
+    "uuid": "^3.3.2",
+    "vhost": "^3.0.2",
+    "xml2js": "^0.4.19"
   }
 }
