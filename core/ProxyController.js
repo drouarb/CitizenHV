@@ -3,6 +3,7 @@
  */
 
 const sql = require('../sql');
+const debug = require('debug')('Proxy');
 const proxy = require('http-proxy').createProxyServer({});
 const Op = sql.sequelize.Op;
 
@@ -55,6 +56,7 @@ class ProxyController {
                 } else {
                     let vm = vms[Math.floor(Math.random()*vms.length)];
                     try {
+                        debug('Proxy ' + host + ' on http://'+ vm.dataValues.ip + ':' + port );
                         proxy.web(req, res, { target: 'http://'+ vm.dataValues.ip + ':' + port });
                     } catch (e) {
                         res.sendStatus(502)

@@ -6,6 +6,7 @@ const Promise = require('bluebird');
 const debug = require('debug')('VMController');
 const arp = require('node-arp');
 const sql = require('../sql');
+const config = require('../config');
 
 Promise.promisifyAll(arp);
 
@@ -79,8 +80,8 @@ class VMController {
             })
             .then((city) => {
                 res.send(JSON.stringify({
-                    api_url: "http://172.16.200.1/ecclesia-1.0-SNAPSHOT.zip",
-                    front_url: "https://drouarb:tyx5jnut@github.com/Yosh971/Ecclesia.git",
+                    api_url: config.api_url,
+                    front_url: config.front_url,
                     front_branch: "master",
                     db_url: city.dataValues.db_url,
                     db_user: city.dataValues.db_user,

@@ -1,3 +1,7 @@
+/**
+ * Created with <3 by drouar_b
+ */
+
 const ipRangeCheck = require("ip-range-check");
 
 class IPFilter {

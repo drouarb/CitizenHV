@@ -1,3 +1,7 @@
+/**
+ * Created with <3 by drouar_b
+ */
+
 const Promise = require('bluebird');
 const libvirt = require('libvirt');
 const config = require('../config');
